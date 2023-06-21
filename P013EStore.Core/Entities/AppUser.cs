@@ -11,12 +11,12 @@ namespace P013EStore.Core.Entities
 	{
         public int Id { get; set; }
 		[Display(Name = "Ad")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 		[Display(Name = "Soyad")]
 		public string? Surname { get; set; }
-		public string Email { get; set; }
+		public string? Email { get; set; }
 		[Display(Name = "Şifre")]
-		public string Password { get; set; }
+		public string? Password { get; set; }
 		[Display(Name = "Kullanıcı Adı")]
 		public string? UserName { get; set; }
 		[Display(Name = "Telefon")]

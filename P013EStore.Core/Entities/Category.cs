@@ -11,7 +11,7 @@ namespace P013EStore.Core.Entities
 	{
         public int Id { get; set; }
 		[Display(Name = "Kategori Adı")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 		[Display(Name = "Kategori Açıklaması")]
 		public string? Description { get; set; }
 		[Display(Name = "Kategori Resmi")]
@@ -26,6 +26,7 @@ namespace P013EStore.Core.Entities
 		public int OrderNo { get; set; }
 		[Display(Name = "Eklenme Tarihi"), ScaffoldColumn(false)]
 		public DateTime CreateDate { get; set; } = DateTime.Now;
+        public List<Product>? Products { get; set; }
 
     }
 }

@@ -1,0 +1,91 @@
+﻿@using P013EStore.Service.Abstract;
+@model Contact
+@inject IService<Settings> _serviceSettings;
+@{
+    ViewData["Title"] = "İletişim";
+    var settings = await _serviceSettings.GetAllAsync();
+    var set = settings.FirstOrDefault();
+}
+
+
+<div class="row">
+    @*@Html.Raw(TempData["Message"])*@
+    <div class="col-md-4">
+		<h4>Bize Ulaşın</h4>
+		<hr />
+        <form asp-action="ContactUs">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="control-label"></label>
+                <textarea asp-for="Message" class="form-control"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Gönder" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+	<div class="col-md-4">
+		<h4>Adres Bilgilerimiz</h4>
+		<hr />
+		<table>
+			<tr>
+				<th>Adres </th>
+                <td>
+                    @if (set is not null)
+                    {
+                        @set.Address
+                    }
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>Telefon </th>
+                <td>
+                    @if (set is not null)
+                    {
+                        @set.Phone
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>Email </th>
+                <td>
+                    @if (set is not null)
+                    {
+                        @set.Email
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h4>Harita Bilgilerimiz</h4>
+        <hr />
+        @if (set is not null)
+        {
+            @Html.Raw(set.MapCode)
+        }
+    </div>
+</div>
+
